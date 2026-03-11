@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroLearn Battle</title>
+    <style>
+        :root {
+            --primary: #58cc02; /* Стиль Duolingo */
+            --secondary: #1cb0f6;
+            --dark: #4b4b4b;
+            --light: #f7f7f7;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header - Прогрес та Бали */
+        header {
+            padding: 15px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .user-stats {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Стрічка фактів (Центральний блок) */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .fact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 400px;
+            border-bottom: 5px solid #e5e5e5;
+        }
+
+        .fact-card h2 {
+            color: var(--dark);
+            font-size: 1.5rem;
+        }
+
+        /* Кнопки дій */
+        .actions {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s;
+            text-transform: uppercase;
+        }
+
+        button:active { transform: scale(0.98); }
+
+        .btn-quiz { background: var(--primary); color: white; }
+        .btn-battle { background: var(--secondary); color: white; }
+
+        /* Навігація */
+        nav {
+            background: white;
+            border-top: 2px solid #e5e5e5;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+        }
+
+        .nav-item { color: #afafaf; text-decoration: none; font-size: 0.8rem; text-align: center; }
+        .nav-item.active { color: var(--secondary); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="user-role">🎓 Студент</div>
+        <div class="user-stats">🔥 120 Балів</div>
+    </header>
+
+    <main>
+        <div class="fact-card" id="app-content">
+            <h2>Чи знаєте ви, що...</h2>
+            <p id="fact-text">Завдяки мікронавчанню засвоєння інформації покращується на 17%.</p>
+            
+            <div class="actions">
+                <button class="btn-quiz" onclick="nextFact()">Наступний факт</button>
+                <button class="btn-battle">⚔️ Викликати на баттл</button>
+            </div>
+        </div>
+    </main>
+
+    <nav>
+        <a href="#" class="nav-item active">🏠 Стрічка</a>
+        <a href="#" class="nav-item">📝 Квізи</a>
+        <a href="#" class="nav-item">🏆 Рейтинг</a>
+        <a href="#" class="nav-item">⚙️ Профіль</a>
+    </nav>
+
+    <script>
+        const facts = [
+            "Мозок краще запам'ятовує інформацію короткими сесіями по 5-10 хвилин.",
+            "GDPR захищає ваші дані навіть у таких маленьких додатках, як цей.",
+            "Режим баттлу стимулює вироблення дофаміну, що полегшує навчання."
+        ];
+
+        function nextFact() {
+            const textEl = document.getElementById('fact-text');
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            textEl.innerText = randomFact;
+        }
+    </script>
+</body>
+</html>
